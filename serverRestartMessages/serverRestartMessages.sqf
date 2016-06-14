@@ -99,8 +99,8 @@ while {checkServerTime} do
 			{
 				RM_DISPLAYTEXT_PUBVAR = ["<t color='#FFFF00' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 10 MINUTES",0,0.7,10,0];
 				publicVariable "RM_DISPLAYTEXT_PUBVAR";
-				diag_log format ["[SERVER RESTART] -> 10 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];	
-				_30minCheck = true;	_20minCheck = true;	_10minCheck = true;
+				diag_log format ["[SERVER RESTART] -> 10 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
+				_30minCheck = true; _20minCheck = true; _10minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - (5 * 60))) && (_realSecondsTime <= (_hardSecondsTime - (5 * 60) + 60)) && !_5minCheck) :
 			{
@@ -117,14 +117,14 @@ while {checkServerTime} do
 					publicVariable "RM_DISPLAYTEXT_PUBVAR";
 					diag_log format ["[SERVER RESTART] -> 5 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
 				};
-				_30minCheck = true;	_20minCheck = true;	_10minCheck = true;	_5minCheck = true;
+				_30minCheck = true; _20minCheck = true; _10minCheck = true; _5minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - (2 * 60))) && (_realSecondsTime <= (_hardSecondsTime - (2 * 60) + 60)) && !_2minCheck) :
 			{
 				RM_DISPLAYTEXT_PUBVAR = ["<t color='#FF5500' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 2 MINUTES<br/><t color='#FF5500'>LOG OUT NOW!</t>",0,0.7,10,0];
 				publicVariable "RM_DISPLAYTEXT_PUBVAR";
 				diag_log format ["[SERVER RESTART] -> 2 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
-				_30minCheck = true;	_20minCheck = true;	_10minCheck = true;	_5minCheck = true; _2minCheck = true;
+				_30minCheck = true; _20minCheck = true; _10minCheck = true; _5minCheck = true; _2minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - 60)) && (_realSecondsTime <= _hardSecondsTime) && !_1minCheck) :
 			{
