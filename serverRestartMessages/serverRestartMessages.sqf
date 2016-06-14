@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: serverRestartMessages.sqf
-	Version: 1.0
+	Version: 1.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 12:00 PM 01/01/2016
-	Modification Date: 12:00 PM 01/01/2016
+	Modification Date: 4:40 PM 14/06/2016
 	
 	Description:
 	This script must be used with real_date (http://killzonekid.com/arma-extension-real_date-dll/)
@@ -41,6 +41,10 @@
 	Parameter(s): none
 
 	Example: none
+	
+	Change Log:
+	1.0 - original base script.
+	1.1 - fixed client messages to reflect if server is locked at 5 minutes until restart or not.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -89,52 +93,43 @@ while {checkServerTime} do
 				RM_DISPLAYTEXT_PUBVAR = ["<t color='#FFFF00' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 20 MINUTES",0,0.7,10,0];
 				publicVariable "RM_DISPLAYTEXT_PUBVAR";
 				diag_log format ["[SERVER RESTART] -> 20 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
-				_30minCheck = true;
-				_20minCheck = true;
+				_30minCheck = true; _20minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - (10 * 60))) && (_realSecondsTime <= (_hardSecondsTime - (10 * 60) + 60)) && !_10minCheck) :
 			{
 				RM_DISPLAYTEXT_PUBVAR = ["<t color='#FFFF00' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 10 MINUTES",0,0.7,10,0];
 				publicVariable "RM_DISPLAYTEXT_PUBVAR";
 				diag_log format ["[SERVER RESTART] -> 10 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];	
-				_30minCheck = true;
-				_20minCheck = true;
-				_10minCheck = true;
+				_30minCheck = true;	_20minCheck = true;	_10minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - (5 * 60))) && (_realSecondsTime <= (_hardSecondsTime - (5 * 60) + 60)) && !_5minCheck) :
 			{
-				RM_DISPLAYTEXT_PUBVAR = ["<t color='#FF5500' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 5 MINUTES<br/><t color='#FF5500' size='0.65'>THE SERVER IS NOW LOCKED UNTIL RESTART",0,0.7,10,0];
-				publicVariable "RM_DISPLAYTEXT_PUBVAR";
-				diag_log format ["[SERVER RESTART] -> 5 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
-				_30minCheck = true;
-				_20minCheck = true;
-				_10minCheck = true;
-				_5minCheck = true;
 				if (_lockServerAt5Minutes) then
 				{
 					_lockServer = "[]" serverCommand "#lock";
+					RM_DISPLAYTEXT_PUBVAR = ["<t color='#FF5500' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 5 MINUTES<br/><t color='#FF5500' size='0.65'>THE SERVER IS NOW LOCKED UNTIL RESTART",0,0.7,10,0];
+					publicVariable "RM_DISPLAYTEXT_PUBVAR";
+					diag_log format ["[SERVER RESTART] -> 5 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3] - SERVER LOCKED!",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
+				}
+				else
+				{
+					RM_DISPLAYTEXT_PUBVAR = ["<t color='#FF5500' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 5 MINUTES",0,0.7,10,0];
+					publicVariable "RM_DISPLAYTEXT_PUBVAR";
+					diag_log format ["[SERVER RESTART] -> 5 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
 				};
+				_30minCheck = true;	_20minCheck = true;	_10minCheck = true;	_5minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - (2 * 60))) && (_realSecondsTime <= (_hardSecondsTime - (2 * 60) + 60)) && !_2minCheck) :
 			{
 				RM_DISPLAYTEXT_PUBVAR = ["<t color='#FF5500' size='0.65'>SERVER RESTART</t><br/><t size='0.65'>THE SERVER WILL RESTART IN 2 MINUTES<br/><t color='#FF5500'>LOG OUT NOW!</t>",0,0.7,10,0];
 				publicVariable "RM_DISPLAYTEXT_PUBVAR";
 				diag_log format ["[SERVER RESTART] -> 2 MINUTES UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
-				_30minCheck = true;
-				_20minCheck = true;
-				_10minCheck = true;
-				_5minCheck = true;
-				_2minCheck = true;
+				_30minCheck = true;	_20minCheck = true;	_10minCheck = true;	_5minCheck = true; _2minCheck = true;
 			};
 			case ((_realSecondsTime >= (_hardSecondsTime - 60)) && (_realSecondsTime <= _hardSecondsTime) && !_1minCheck) :
 			{
 				diag_log format ["[SERVER RESTART] -> 60 SECONDS UNTIL SERVER RESTART - CURRENT SERVER TIME IS [%1:%2:%3]",_realServerTimeHour,_realServerTimeMin,_realServerTimeSec];
-				_30minCheck = true;
-				_20minCheck = true;
-				_10minCheck = true;
-				_5minCheck = true;
-				_2minCheck = true;
-				_1minCheck = true;
+				_30minCheck = true; _20minCheck = true; _10minCheck = true; _5minCheck = true; _2minCheck = true; _1minCheck = true;
 				if (_lastMinuteCountDown) then 
 				{
 					for [{_s = (_hardSecondsTime - _realSecondsTime)},{_s > 0},{_s = _s - 1}] do
@@ -163,7 +158,7 @@ while {checkServerTime} do
 			};
 		};
 	} forEach _hardResetTimes;
-	
+
 	uiSleep 1;
 	
 	_ticksEnd = round(diag_TickTime);
