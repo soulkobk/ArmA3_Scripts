@@ -27,17 +27,21 @@
 	Description:
 	This script must be used with real_date (http://killzonekid.com/arma-extension-real_date-dll/)
 	extention to get the server time on script execution, and must also be executed server side only!
+	(place the real_date.dll in the same directory where your arma3server.exe is).
+
+	This script needs to be placed in the SERVER SIDE folder...
+	'A3Wasteland_Settings\scripts\serverRestartMessages\serverRestartMessages.sqf'
 	
-	The following line needs to be placed in the client init.sqf file (client side).
+	The following line needs to be placed in the SERVER SIDE init.sqf (found in A3Wasteland_Settings folder).
+	execVM (externalConfigFolder + "\scripts\serverRestartMessages\serverRestartMessages.sqf");
+	
+	The following line needs to be placed in the MISSION init.sqf file (then re-pack the mission.pbo).
 	"RM_DISPLAYTEXT_PUBVAR" addPublicVariableEventHandler {(_this select 1) spawn BIS_fnc_dynamicText;};
 
-	The following line needs to be placed in the server init.sqf (server side).
-	[] execVM "server\scripts\serverRestartMessages\serverRestartMessages.sqf";
-	
 	The script is informative only and will display messages on all clients when the server is due
 	to restart. Please note, this script does NOT restart the server, you will need to sync this
 	script up with your own	restart times (bec client/batch file/hosted restart/script restart).
-
+	
 	Parameter(s): none
 
 	Example: none
