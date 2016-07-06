@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: cleanStores.sqf
-	Version: 1.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 9:33 PM 04/07/2016
-	Modification Date: 9:33 PM 04/07/2016
+	Modification Date: 3:01 PM 06/07/2016
 	
 	Description:
 	For use with A3Wasteland 1.2b mission (A3Wasteland.com). This script is for cleaning up left-over
@@ -41,7 +41,9 @@
 	Example: none
 	
 	Change Log:
-	1.0	-	original base script.
+	1.0.0 -	original base script.
+	1.0.1 -	updated to getNumber of the mapSize from the configFile and calculate the map center,
+			and calculate a proper radius to cover the entire map square.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -68,7 +70,9 @@ SL_cleanUpObjects = [
 	DO NOT EDIT BELOW HERE!
 	------------------------------------------------------------------------------------------	*/
 
-_entitiesStoreNPC = ([0,0,0] nearEntities [["CAManBase"], worldSize]) - allPlayers;
+_mapSizeSquare = getNumber (configfile >> "CfgWorlds" >> worldName >> "mapSize");
+_mapSizeEllipse = sqrt ((_mapSizeSquare * _mapSizeSquare) + (_mapSizeSquare * _mapSizeSquare));
+_entitiesStoreNPC = ([(_mapSizeSquare / 2),(_mapSizeSquare / 2),0] nearEntities [["CAManBase"], _mapSizeEllipse]) - allPlayers;
 
 _storeNumbers = 0;
 _storePositions = [];
