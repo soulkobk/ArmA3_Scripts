@@ -74,6 +74,7 @@
 	Change Log:
 	1.0.0 -	original base script.
 	1.0.1 -	corrected _opticsDisallow default entries.
+	1.0.2 -	corrected typo at setUnitTrait.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -478,7 +479,7 @@ if ((_healthProbability > random 99) || (_healthProbability == 100)) then
 	for "_i" from 1 to _healthAmount do
 	{
 		_soldier addItem "FirstAidKit";
-		_solder setUnitTrait ["Medic",true];
+		_soldier setUnitTrait ["Medic",true];
 	};
 };
 
