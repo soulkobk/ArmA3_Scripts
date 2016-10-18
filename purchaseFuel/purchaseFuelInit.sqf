@@ -19,7 +19,7 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuelInit.sqf
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
 	Modification Date: 4:59 PM 11/10/2016
@@ -41,6 +41,9 @@
 	
 	And at the bottom of the script, paste in...
 	[] execVM "server\functions\purchaseFuelInit.sqf";
+
+	COPY/MOVE the 'purchaseFuel.paa' (icon) into the directory...
+	\client\icons\purchaseFuel.paa
 	
 	*Please note that with the use of this script, that 'Jerry Cans' will still be able to filled
 	for FREE.
@@ -51,6 +54,8 @@
 	
 	Change Log:
 	1.0.0 -	original base script.
+	1.0.1 -	updated purchase fuel action with custom icon. (made by soulkobk to match other
+			A3Wasteland icons).
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -74,7 +79,7 @@ _fuelFeeds = nearestObjects [[(_mapSizeSquare / 2),(_mapSizeSquare / 2),0], _fue
 
 {
 	_x setFuelCargo 0;
-	_x addAction ["Purchase Fuel", "server\functions\purchaseFuel.sqf", player, 1.5, false, true, "(driver (vehicle player))", "((UAVControl (getConnectedUAV player) select 1) == 'DRIVER') || (vehicle player) isKindOf 'Air' || (vehicle player) isKindOf 'LandVehicle' && !((vehicle player) isKindOf 'ParachuteBase');", 10, false];
+	_x addAction ["<img image='client\icons\purchaseFuel.paa'/> Purchase Fuel", "server\functions\purchaseFuel.sqf", player, 1.5, false, true, "(driver (vehicle player))", "((UAVControl (getConnectedUAV player) select 1) == 'DRIVER') || (vehicle player) isKindOf 'Air' || (vehicle player) isKindOf 'LandVehicle' && !((vehicle player) isKindOf 'ParachuteBase');", 10, false];
 } forEach _fuelFeeds;
 
 diag_log format ["[PURCHASE FUEL] -> ENABLED FUEL PURCHASING AT %1 FUEL PUMPS, NO MORE FREE FUEL!", (count _fuelFeeds)];

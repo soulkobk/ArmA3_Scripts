@@ -19,7 +19,7 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuel.sqf
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
 	Modification Date: 4:59 PM 11/10/2016
@@ -32,11 +32,14 @@
 	
 	Edit the cost price per tank of fuel with the variable _fuelPricePerTank below. For example
 	if the price is set at 2500, then $2500 is the cost of a FULL tank of fuel. The script also
-	deducts	cost if you are in the middle of a refuelling, but abort. You can't glitch fill your
+	deducts	cost if you are in the middle of a Refueling, but abort. You can't glitch fill your
 	vehicle	for free!
 	
 	Place this script in directory...
 	\server\functions\purchaseFuel.sqf
+	
+	COPY/MOVE the 'purchaseFuel.paa' (icon) into the directory...
+	\client\icons\purchaseFuel.paa
 	
 	*Please note that with the use of this script, that 'Jerry Cans' will still be able to filled
 	for FREE.
@@ -47,6 +50,7 @@
 	
 	Change Log:
 	1.0.0 -	original base script.
+	1.0.1 -	fixed spelling errors.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -77,14 +81,14 @@ _vehicleName = getText (configFile >> "CfgVehicles" >> (typeOf _vehicle) >> "dis
 
 if (driver _vehicle != _unit) exitWith
 {
-	_text = format ["You must be the driver to refuel the vehicle %1.\nREFUELLING ABORTED!",_vehicleName];
+	_text = format ["You must be the driver to refuel the vehicle %1.\nREFUELING ABORTED!",_vehicleName];
 	[_text, 5] call mf_notify_client;
 	mutexScriptInProgress = false;
 };
 
 if ((_vehicleFuel * 2) >= 0.95) exitWith
 {
-	_text = format ["Your vehicle %1 is already full of fuel.\nREFUELLING ABORTED!",_vehicleName];
+	_text = format ["Your vehicle %1 is already full of fuel.\nREFUELING ABORTED!",_vehicleName];
 	[_text, 5] call mf_notify_client;
 	mutexScriptInProgress = false;
 };
@@ -93,25 +97,25 @@ _unitCMoney = _player getVariable "cmoney";
 
 if (_unitCMoney < _fuelPrice) exitWith
 {
-	_text = format ["You need $%1 of carried money to refuel the vehicle %2, you have $%3 on you.\nREFUELLING ABORTED!",_fuelPrice,_vehicleName,_unitCMoney];
+	_text = format ["You need $%1 of carried money to refuel the vehicle %2, you have $%3 on you.\nREFUELING ABORTED!",_fuelPrice,_vehicleName,_unitCMoney];
 	[_text, 5] call mf_notify_client;
 	mutexScriptInProgress = false;
 };
 
-_text = format ["You have 5 seconds to stop the engine in order to refuel the vehicle for $%1.\nYou can abort the fuelling process by removing yourself from driver position or by starting the engine.", _fuelPrice];
+_text = format ["You have 5 seconds to stop the engine in order to refuel the vehicle for $%1.\nYou can abort the fueling process by removing yourself from driver position or by starting the engine.", _fuelPrice];
 [_text, 5] call mf_notify_client;
 
 uiSleep 5;
 
-refuellingVehicle = true;
+refuelingVehicle = true;
 
 [_vehicle,_unit] spawn {
 	params ["_vehicle","_unit"];
-	while {refuellingVehicle} do
+	while {refuelingVehicle} do
 	{
 		if (!(driver _vehicle == _unit) || (isEngineOn _vehicle)) then
 		{
-			refuellingVehicle = false;
+			refuelingVehicle = false;
 			mutexScriptInProgress = false;
 		};
 		uiSleep 0.1;
@@ -120,13 +124,13 @@ refuellingVehicle = true;
 
 uiSleep 0.5;
 
-if !(refuellingVehicle) exitWith
+if !(refuelingVehicle) exitWith
 {
-	_text = format ["Refulling of vehicle %1 interrupted.\nREFUELLING ABORTED!",_vehicleName];
+	_text = format ["Refueling of vehicle %1 interrupted.\nREFUELING ABORTED!",_vehicleName];
 	[_text, 5] call mf_notify_client;
 };
 
-_text = format ["Refuelling vehicle %1, please wait.",_vehicleName];
+_text = format ["Refueling vehicle %1, please wait.",_vehicleName];
 [_text, 5] call mf_notify_client;
 
 uiSleep 0.5;
@@ -136,13 +140,13 @@ for "_i" from _vehicleFuel to 1 step 0.01 do
 	_fuelLevel = _vehicleFuel + _i;
 	_vehicle setFuel _fuelLevel;
 	uiSleep 0.5;
-	if !(refuellingVehicle) exitWith {};
+	if !(refuelingVehicle) exitWith {};
 };
 
-if (refuellingVehicle) then
+if (refuelingVehicle) then
 {
 	_vehicle setFuel 1;
-	_text = format ["Refulling of vehicle %1 complete, which cost $%2.\nREFUELLING COMPLETE!",_vehicleName,_fuelPrice];
+	_text = format ["Refueling of vehicle %1 complete, which cost $%2.\nREFUELING COMPLETE!",_vehicleName,_fuelPrice];
 	[_text, 5] call mf_notify_client;
 	_player setVariable ["cmoney",(_unitCMoney - _fuelPrice)];
 }
@@ -154,16 +158,16 @@ else
 	_partialFuelPrice = ceil (_fuelPricePerTank * (_differenceVehicleFuel * 2));
 	if (_partialFuelPrice <= 0) then
 	{
-		_text = format ["Refulling of vehicle %1 interrupted.\nREFUELLING ABORTED!",_vehicleName];
+		_text = format ["Refueling of vehicle %1 interrupted.\nREFUELING ABORTED!",_vehicleName];
 		[_text, 5] call mf_notify_client;
 	}
 	else
 	{
-		_text = format ["Refulling of vehicle %1 interrupted, which cost $%2.\nREFUELLING ABORTED!",_vehicleName,_partialFuelPrice];
+		_text = format ["Refueling of vehicle %1 interrupted, which cost $%2.\nREFUELING ABORTED!",_vehicleName,_partialFuelPrice];
 		[_text, 5] call mf_notify_client;
 		_player setVariable ["cmoney",(_unitCMoney - _partialFuelPrice)];
 	};
 };
 
 mutexScriptInProgress = false;
-refuellingVehicle = false;
+refuelingVehicle = false;
