@@ -19,31 +19,37 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuelInit.sqf
-	Version: 1.0.1
+	Version: 1.0.2
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
-	Modification Date: 4:59 PM 11/10/2016
+	Modification Date: 10:11 PM 18/10/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
-	'purchaseFuel.sqf'.	
+	'purchaseFuel.sqf'.
 	
 	This script will disable 'free' fuel at ALL fuel stations and attach an action to 'Purchase Fuel'
 	at a cost set within the 'purchaseFuel.sqf' script, which is needed for this init script to
 	function. Tested and functioning on all Air and Land Vehicles, including UAV's (you must be the
 	driver/operator).
-	
+
 	Place this script in directory...
-	\server\functions\purchaseFuelInit.sqf
+	\addons\purchaseFuel\purchaseFuelInit.sqf
 	
 	Edit the file...
 	\server\init.sqf
 	
 	And at the bottom of the script, paste in...
-	[] execVM "server\functions\purchaseFuelInit.sqf";
+	[] execVM "addons\purchaseFuel\purchaseFuelInit.sqf";
+
+	Edit the file...
+	\client\init.sqf
+	
+	And at the bottom of the script, paste in...
+	[] execVM "addons\purchaseFuel\purchaseFuelInit.sqf";
 
 	COPY/MOVE the 'purchaseFuel.paa' (icon) into the directory...
-	\client\icons\purchaseFuel.paa
+	\addons\purchaseFuel\purchaseFuel.paa
 	
 	*Please note that with the use of this script, that 'Jerry Cans' will still be able to filled
 	for FREE.
@@ -56,6 +62,8 @@
 	1.0.0 -	original base script.
 	1.0.1 -	updated purchase fuel action with custom icon. (made by soulkobk to match other
 			A3Wasteland icons).
+	1.0.2 -	redid forEach loop due to addAction only working client side! purchaseFuelInit.sqf
+			must be executed client AND server side. moved directories to \addons\purchaseFuel.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -78,8 +86,17 @@ _mapSizeEllipse = sqrt ((_mapSizeSquare * _mapSizeSquare) + (_mapSizeSquare * _m
 _fuelFeeds = nearestObjects [[(_mapSizeSquare / 2),(_mapSizeSquare / 2),0], _fuelFeedArray, _mapSizeEllipse];
 
 {
-	_x setFuelCargo 0;
-	_x addAction ["<img image='client\icons\purchaseFuel.paa'/> Purchase Fuel", "server\functions\purchaseFuel.sqf", player, 1.5, false, true, "(driver (vehicle player))", "((UAVControl (getConnectedUAV player) select 1) == 'DRIVER') || (vehicle player) isKindOf 'Air' || (vehicle player) isKindOf 'LandVehicle' && !((vehicle player) isKindOf 'ParachuteBase');", 10, false];
+	if (isServer || isDedicated) then
+	{
+		_x setFuelCargo 0;
+	};
+	if (hasInterFace) then
+	{
+		_x addAction ["<img image='addons\purchaseFuel\purchaseFuel.paa'/> Purchase Fuel", "addons\purchaseFuel\purchaseFuel.sqf", player, 1.5, true, true, "(driver (vehicle player))", "((UAVControl (getConnectedUAV player) select 1) == 'DRIVER') || (vehicle player) isKindOf 'Air' || (vehicle player) isKindOf 'LandVehicle' && !((vehicle player) isKindOf 'ParachuteBase');", 10, false];
+	};
 } forEach _fuelFeeds;
 
-diag_log format ["[PURCHASE FUEL] -> ENABLED FUEL PURCHASING AT %1 FUEL PUMPS, NO MORE FREE FUEL!", (count _fuelFeeds)];
+if (isServer || isDedicated) then
+{
+	diag_log format ["[PURCHASE FUEL] -> ENABLED FUEL PURCHASING AT %1 FUEL PUMPS, NO MORE FREE FUEL!", (count _fuelFeeds)];
+};

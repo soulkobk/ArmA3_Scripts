@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuel.sqf
-	Version: 1.0.1
+	Version: 1.0.2
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
-	Modification Date: 4:59 PM 11/10/2016
+	Modification Date: 10:11 PM 18/10/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
@@ -32,14 +32,14 @@
 	
 	Edit the cost price per tank of fuel with the variable _fuelPricePerTank below. For example
 	if the price is set at 2500, then $2500 is the cost of a FULL tank of fuel. The script also
-	deducts	cost if you are in the middle of a Refueling, but abort. You can't glitch fill your
-	vehicle	for free!
+	deducts cost if you are in the middle of a Refueling, but abort. You can't glitch fill your
+	vehicle for free!
 	
 	Place this script in directory...
-	\server\functions\purchaseFuel.sqf
+	\addons\purchaseFuel\purchaseFuel.sqf
 	
 	COPY/MOVE the 'purchaseFuel.paa' (icon) into the directory...
-	\client\icons\purchaseFuel.paa
+	\addons\purchaseFuel\purchaseFuel.paa
 	
 	*Please note that with the use of this script, that 'Jerry Cans' will still be able to filled
 	for FREE.
@@ -51,6 +51,7 @@
 	Change Log:
 	1.0.0 -	original base script.
 	1.0.1 -	fixed spelling errors.
+	1.0.2 -	moved directories to \addons\purchaseFuel.
 	
 	----------------------------------------------------------------------------------------------
 */
