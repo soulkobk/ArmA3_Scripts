@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuelInit.sqf
-	Version: 1.0.4
+	Version: 1.0.5
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
-	Modification Date: 1:17 PM 19/10/2016
+	Modification Date: 7:01 PM 19/10/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
@@ -66,6 +66,7 @@
 			must be executed client AND server side. moved directories to \addons\purchaseFuel.
 	1.0.3 -	purchaseFuel.sqf changes.
 	1.0.4 -	updated setFuelCargo for hasInterFace check due to allowing free fuel still. SMH.
+	1.0.5 -	purchaseFuel.sqf changes.
 	
 	----------------------------------------------------------------------------------------------
 */

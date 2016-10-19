@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuel.sqf
-	Version: 1.0.4
+	Version: 1.0.5
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
-	Modification Date: 1:17 PM 19/10/2016
+	Modification Date: 7:01 PM 19/10/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
@@ -54,6 +54,7 @@
 	1.0.2 -	purchaseFuelInit.sqf changes.
 	1.0.3 -	fixed money deductions upon fuel purchase (setVariable global).
 	1.0.4 -	purchaseFuelInit.sqf changes.
+	1.0.5 -	changed parsed player to global player for cmoney variable.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -74,7 +75,6 @@ mutexScriptInProgress = true;
 _source = _this select 0;
 _unit = _this select 1;
 _vehicle = vehicle _unit;
-_player = _this select 3;
 
 _vehicleFuel = fuel _vehicle / 2;
 
@@ -96,7 +96,7 @@ if ((_vehicleFuel * 2) >= 0.95) exitWith
 	mutexScriptInProgress = false;
 };
 
-_unitCMoney = _player getVariable "cmoney";
+_unitCMoney = player getVariable "cmoney";
 
 if (_unitCMoney < _fuelPrice) exitWith
 {
@@ -151,7 +151,7 @@ if (refuelingVehicle) then
 	_vehicle setFuel 1;
 	_text = format ["Refueling of vehicle %1 complete, which cost $%2.\nREFUELING COMPLETE!",_vehicleName,_fuelPrice];
 	[_text, 5] call mf_notify_client;
-	_player setVariable ["cmoney",(_unitCMoney - _fuelPrice),true];
+	player setVariable ["cmoney",(_unitCMoney - _fuelPrice),true];
 }
 else
 {
@@ -168,7 +168,7 @@ else
 	{
 		_text = format ["Refueling of vehicle %1 interrupted, which cost $%2.\nREFUELING ABORTED!",_vehicleName,_partialFuelPrice];
 		[_text, 5] call mf_notify_client;
-		_player setVariable ["cmoney",(_unitCMoney - _partialFuelPrice),true];
+		player setVariable ["cmoney",(_unitCMoney - _partialFuelPrice),true];
 	};
 };
 
