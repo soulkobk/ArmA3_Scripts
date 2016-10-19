@@ -19,7 +19,7 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuel.sqf
-	Version: 1.0.3
+	Version: 1.0.4
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
 	Modification Date: 1:17 PM 19/10/2016
@@ -53,6 +53,7 @@
 	1.0.1 -	purchaseFuelInit.sqf changes.
 	1.0.2 -	purchaseFuelInit.sqf changes.
 	1.0.3 -	fixed money deductions upon fuel purchase (setVariable global).
+	1.0.4 -	purchaseFuelInit.sqf changes.
 	
 	----------------------------------------------------------------------------------------------
 */

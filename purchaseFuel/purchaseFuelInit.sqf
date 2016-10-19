@@ -19,7 +19,7 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuelInit.sqf
-	Version: 1.0.3
+	Version: 1.0.4
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
 	Modification Date: 1:17 PM 19/10/2016
@@ -65,6 +65,7 @@
 	1.0.2 - redid forEach loop due to addAction only working client side! purchaseFuelInit.sqf
 			must be executed client AND server side. moved directories to \addons\purchaseFuel.
 	1.0.3 -	purchaseFuel.sqf changes.
+	1.0.4 -	updated setFuelCargo for hasInterFace check due to allowing free fuel still. SMH.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -93,6 +94,7 @@ _fuelFeeds = nearestObjects [[(_mapSizeSquare / 2),(_mapSizeSquare / 2),0], _fue
 	};
 	if (hasInterFace) then
 	{
+		_x setFuelCargo 0;
 		_x addAction ["<img image='addons\purchaseFuel\purchaseFuel.paa'/> Purchase Fuel", "addons\purchaseFuel\purchaseFuel.sqf", player, 1.5, true, true, "(driver (vehicle player))", "((UAVControl (getConnectedUAV player) select 1) == 'DRIVER') || (vehicle player) isKindOf 'Air' || (vehicle player) isKindOf 'LandVehicle' && !((vehicle player) isKindOf 'ParachuteBase');", 10, false];
 	};
 } forEach _fuelFeeds;
