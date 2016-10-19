@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuel.sqf
-	Version: 1.0.2
+	Version: 1.0.3
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
-	Modification Date: 10:11 PM 18/10/2016
+	Modification Date: 1:17 PM 19/10/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
@@ -50,8 +50,9 @@
 	
 	Change Log:
 	1.0.0 -	original base script.
-	1.0.1 -	fixed spelling errors.
-	1.0.2 -	moved directories to \addons\purchaseFuel.
+	1.0.1 -	purchaseFuelInit.sqf changes.
+	1.0.2 -	purchaseFuelInit.sqf changes.
+	1.0.3 -	fixed money deductions upon fuel purchase (setVariable global).
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -149,7 +150,7 @@ if (refuelingVehicle) then
 	_vehicle setFuel 1;
 	_text = format ["Refueling of vehicle %1 complete, which cost $%2.\nREFUELING COMPLETE!",_vehicleName,_fuelPrice];
 	[_text, 5] call mf_notify_client;
-	_player setVariable ["cmoney",(_unitCMoney - _fuelPrice)];
+	_player setVariable ["cmoney",(_unitCMoney - _fuelPrice),true];
 }
 else
 {
@@ -166,7 +167,7 @@ else
 	{
 		_text = format ["Refueling of vehicle %1 interrupted, which cost $%2.\nREFUELING ABORTED!",_vehicleName,_partialFuelPrice];
 		[_text, 5] call mf_notify_client;
-		_player setVariable ["cmoney",(_unitCMoney - _partialFuelPrice)];
+		_player setVariable ["cmoney",(_unitCMoney - _partialFuelPrice),true];
 	};
 };
 

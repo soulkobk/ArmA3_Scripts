@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: purchaseFuelInit.sqf
-	Version: 1.0.2
+	Version: 1.0.3
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
-	Modification Date: 10:11 PM 18/10/2016
+	Modification Date: 1:17 PM 19/10/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
@@ -62,8 +62,9 @@
 	1.0.0 -	original base script.
 	1.0.1 -	updated purchase fuel action with custom icon. (made by soulkobk to match other
 			A3Wasteland icons).
-	1.0.2 -	redid forEach loop due to addAction only working client side! purchaseFuelInit.sqf
+	1.0.2 - redid forEach loop due to addAction only working client side! purchaseFuelInit.sqf
 			must be executed client AND server side. moved directories to \addons\purchaseFuel.
+	1.0.3 -	purchaseFuel.sqf changes.
 	
 	----------------------------------------------------------------------------------------------
 */
