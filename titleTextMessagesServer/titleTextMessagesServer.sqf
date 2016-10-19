@@ -1,6 +1,6 @@
 /*
 	----------------------------------------------------------------------------------------------
-	
+
 	Copyright © 2016 soulkobk (soulkobk.blogspot.com)
 
 	This program is free software: you can redistribute it and/or modify
@@ -17,31 +17,31 @@
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 	----------------------------------------------------------------------------------------------
-	
+
 	Name: titleTextMessagesServer.sqf
 	Version: 1.0.0
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 4:59 PM 11/10/2016
 	Modification Date: 4:57 PM 19/10/2016
-	
+
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script MUST be paired up with
-	thetitleTextMessagesServerText.sqf
-	
+	the file titleTextMessagesServerText.sqf
+
 	This script will display title text messages on each client (players) screen whilst in-game, as
-	per the text contained within thetitleTextMessagesServerText.sqf file.
+	per the text contained within the titleTextMessagesServerText.sqf file.
 
 	Place this file SERVER SIDE at \A3Wasteland_settings\titleTextMessagesServer.sqf
-	
+
 	Edit your SERVER SIDE FILE...
 	\init.sqf 
-	
+
 	Paste in...
 	execVM (externalConfigFolder + "\titleTextMessagesServer.sqf");
-	
+
 	Edit your MISSION FILE (mission.pbo)...
 	\init.sqf
-	
+
 	Paste in...
 	"TTM_TITLETEXT_PUBVAR" addPublicVariableEventHandler
 	{
@@ -51,10 +51,10 @@
 		_ttMessageTitleText = format ["%1",_ttMessage];
 		titleText [_ttMessageTitleText,"PLAIN DOWN",_ttDuration];
 	};
-	
+
 	Directly underneath the line...
 	[] execVM "briefing.sqf";
-	
+
 	*Be sure to use the -filePatching switch when launching the ArmA 3 A3Wasteland server.
 
 	Parameter(s): none
