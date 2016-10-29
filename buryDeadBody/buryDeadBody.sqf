@@ -33,10 +33,10 @@
 	\addons\buryDeadBody\buryDeadBody.sqf
 	
 	Place the buryDeadBody.paa icon at...
-	\client\icons\buryDeadBody.paa
+	\addons\buryDeadBody\buryDeadBody.paa
 	
 	Edit file...
-	\client\functions\playerrActions.sqf
+	\client\functions\playerActions.sqf
 	
 	And paste in...
 	["<img image='addons\buryDeadBody\buryDeadBody.paa'/> Bury Dead Body", "addons\buryDeadBody\buryDeadBody.sqf", [], 1.1, false, false, "", "!isNull cursorObject && !alive cursorObject && {cursorObject isKindOf 'Man' && player distance cursorObject <= 2}"],
