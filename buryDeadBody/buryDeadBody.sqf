@@ -19,7 +19,7 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: buryDeadBody.sqf
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com) (base script authors MercyfulFate, AgentRev, Gigatek)
 	Creation Date: 12:47 PM 29/10/2016
 	Modification Date: 12:47 PM 29/10/2016
@@ -50,6 +50,7 @@
 
 	Change Log:
 	1.0.0 -	original base script. all credit to original authors of base script.
+	1.0.1 -	updated setVariable to global, line 91 and 131.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -87,7 +88,7 @@ if (!isNil "_durationStatic") then
 }
 else
 {
-	_deadBody setVariable ["buryDeadBodyDuration",_duration];
+	_deadBody setVariable ["buryDeadBodyDuration",_duration,true];
 };
 
 _playerCMoney = player getVariable ["cmoney",0];
@@ -127,7 +128,7 @@ private _outcome = [_duration, _animation, _checks, [_deadBody]] call a3w_action
 if (_outcome) then
 {
 	["Burying Of Dead Body Successful!", 5] call mf_notify_client;
-	_deadBody setVariable ["buryDeadBodyBurried",true];
+	_deadBody setVariable ["buryDeadBodyBurried",true,true];
 	player setVariable ["cmoney",(_playerCMoney - _price),true];
 	_deadBodyObjects = nearestObjects [_deadBody, ["GroundWeaponHolder","WeaponHolderSimulated"], 2];
 	{
