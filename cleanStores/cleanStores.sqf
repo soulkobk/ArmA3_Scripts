@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: cleanStores.sqf
-	Version: 1.0.1
+	Version: 1.0.2
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 9:33 PM 04/07/2016
-	Modification Date: 3:01 PM 06/07/2016
+	Modification Date: 8:57 PM 08/11/2016
 	
 	Description:
 	For use with A3Wasteland 1.2b mission (A3Wasteland.com). This script is for cleaning up left-over
@@ -44,6 +44,7 @@
 	1.0.0 -	original base script.
 	1.0.1 -	updated to getNumber of the mapSize from the configFile and calculate the map center,
 			and calculate a proper radius to cover the entire map square.
+	1.0.2 -	updated deleteVehicle to use objectFromNetId.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -103,7 +104,7 @@ _storePositions = [];
 					{
 						if (diag_tickTime > (_cleanUpTime + SL_cleanUpDuration)) then
 						{
-							deleteVehicle _x;
+							deleteVehicle objectFromNetId (netID _x);
 						};
 					};
 				} forEach _nearestObjects;
