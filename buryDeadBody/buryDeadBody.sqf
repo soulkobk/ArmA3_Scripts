@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: buryDeadBody.sqf
-	Version: 1.0.1
+	Version: 1.0.2
 	Author: soulkobk (soulkobk.blogspot.com) (base script authors MercyfulFate, AgentRev, Gigatek)
 	Creation Date: 12:47 PM 29/10/2016
-	Modification Date: 12:47 PM 29/10/2016
+	Modification Date: 6:41 PM 08/11/2016
 
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). The script adds a 'Bury Dead Body'
@@ -51,6 +51,8 @@
 	Change Log:
 	1.0.0 -	original base script. all credit to original authors of base script.
 	1.0.1 -	updated setVariable to global, line 91 and 131.
+	1.0.2 -	updated enableSimulationGlobal function for server-side execution and updated
+			deleteVehicle to use objectFromNetId.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -132,9 +134,11 @@ if (_outcome) then
 	player setVariable ["cmoney",(_playerCMoney - _price),true];
 	_deadBodyObjects = nearestObjects [_deadBody, ["GroundWeaponHolder","WeaponHolderSimulated"], 2];
 	{
-		deleteVehicle _x;
+		deleteVehicle objectFromNetId (netID _x);
 	} forEach _deadBodyObjects;
-	_deadBody enableSimulationGlobal false;
+	pvar_enableSimulationGlobal = [_deadBody,false];
+	publicVariableServer "pvar_enableSimulationGlobal";
+	uiSleep 0.5;
 	_deadBodyPos = getPosATL _deadBody;
 	_deadBodyLoop = 0;
 	while {(!isNull _deadBody) || (_deadBodyLoop < 50)} do
@@ -145,14 +149,16 @@ if (_outcome) then
 			_deadBody setPosATL _deadBodyPos;
 			uiSleep 0.1;
 		};
-		deleteVehicle _deadBody;
+		deleteVehicle objectFromNetId (netID _deadBody);
 		_deadBodyLoop = _deadBodyLoop + 1;
 		uiSleep 0.5;
 	};
 	if (!isNull _deadBody) then
 	{
 		["Someone Dug Up The Dead Body, You Get A Refund!", 5] call mf_notify_client;
-		_deadBody enableSimulationGlobal true;
+		pvar_enableSimulationGlobal = [_deadBody,true];
+		publicVariableServer "pvar_enableSimulationGlobal";
+		uiSleep 0.5;
 		player setVariable ["cmoney",(_playerCMoney + _price),true];
 	};
 };
