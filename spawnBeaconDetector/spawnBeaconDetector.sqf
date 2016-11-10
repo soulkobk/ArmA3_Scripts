@@ -176,7 +176,7 @@ if ((count _spawnBeaconDetectorObjects) > 0) then
 		else
 		{
 			["Spawn Beacons Are Out Of Detection Range, Detection Aborted!", 5] call mf_notify_client;
-			playSound3D [_spawnBeaconDetectorOff, eyePos player, false, eyePos player, 2, 1, 100];
+			playSound3D [_spawnBeaconDetectorOff, eyePos player, false, eyePos player, 1.00, 1.00, 100];
 			spawnBeaconDetectorInProgress = false;
 		};
 		uiSleep 0.1;
