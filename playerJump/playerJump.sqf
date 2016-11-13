@@ -1,7 +1,7 @@
 /*
 	----------------------------------------------------------------------------------------------
 	
-	Copyright © 2016 soulkobk (soulkobk.blogspot.com)
+	Copyright Â© 2016 soulkobk (soulkobk.blogspot.com)
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Affero General Public License as
@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: playerJump.sqf
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 12:00 PM 11/05/2016
-	Modification Date: 12:00 PM 11/05/2016
+	Modification Date: 7:52 PM 13/11/2016
 	
 	Description:
 	This jump script is to replace any/all glitchy/buggy jump scripts. This script will NOT visually
@@ -31,18 +31,12 @@
 	In order to use it, place the following line in your init.sqf...
 	[] execVM "addons\playerJump\playerJump.sqf"; // (adjust mission directory pathing as needed).
 	
-	Players will need to bind 'Use Action 20' under player 'CONTROLS' settings to 'SHIFT + V' in order to
-	use the jump command. V = step over, SHIFT + V = jump (must be running upright, not half crouched!).
-	
-	If players have the 'run/sprint' or the 'step over' key bound to another key then adapt the
-	'Use Action 20' to suit, example... SHIFT (run/sprint key) + V (step over key).
+	Players jump key will be a combination of SHIFT and 'STEP OVER' (default 'v' key), so a more
+	plug-n-play solution is met (no custom key bindings).
 	
 	*Please note that the ONLY animation available for jump within ArmA 3 currently is when a player
 	has a primary weapon in their hands. The jump animation does not show proper with no weapon in
 	the hands of the player... ArmA 3 bug.
-	
-	*Please also note that there may be a 'bind' bug where a player will 'step-over' after a 'jump'.
-	This is fixible within your own client key binds (Not sure what I unbound to fix it though :/)
 	
 	Parameter(s): none
 
@@ -50,6 +44,10 @@
 	
 	Change Log:
 	1.0.0 -	original base script.
+	1.0.1 -	changed displaySetEventHandler to displayAddEventHandler. changed key bindings to use
+			run/sprint (SHIFT) and 'GET OVER' (default 'v' key) for jumping. slight changes to
+			SL_fn_jumpOver routine and displayAddEventHandler string. player can now also jump
+			whilst crouch running.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -73,9 +71,11 @@ SL_fn_doAnim =
 };
 
 SL_fn_jumpOver = {
-	if ((inputAction "User20" > 0) && (animationState player != SL_jumpAnimation)) then {
+	params ["_displayCode","_keyCode","_isShift","_isCtrl","_isAlt"];
+	_handled = false;
+	if ((_keyCode in actionKeys "GetOver" && _isShift) && (animationState player != SL_jumpAnimation)) then {
 		private ["_height","_velocity","_direction","_speed"];
-		if ((player == vehicle player) && (isTouchingGround player) && (stance player == "STAND")) then
+		if ((player == vehicle player) && (isTouchingGround player) && ((stance player == "STAND") || (stance player == "CROUCH"))) exitWith
 		{
 			_height = (SL_jumpBaseHeight - (load player)) max SL_jumpMaxHeight;
 			_velocity = velocity player;
@@ -93,9 +93,11 @@ SL_fn_jumpOver = {
 			{
 				player switchMove SL_jumpAnimation;
 			};
+			_handled = true;
 		};
 	};
+	_handled
 };
 
 waituntil {!(isNull (findDisplay 46))};
-(findDisplay 46) displaySetEventHandler ["KeyDown", "[_this] call SL_fn_jumpOver; false;"];
+(findDisplay 46) displayAddEventHandler ["KeyDown", "_this call SL_fn_jumpOver;"];
