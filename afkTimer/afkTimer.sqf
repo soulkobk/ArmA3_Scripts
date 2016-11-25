@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 	
 	Name: afkTimer.sqf
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 7:05 PM 04/11/2016
-	Modification Date: 7:05 PM 04/11/2016
+	Modification Date: 1:36 PM 25/11/2016
 	
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). This script is a player AFK timer.
@@ -49,6 +49,7 @@
 	
 	Change Log:
 	1.0.0 -	original base script.
+	1.0.1 -	fix for headless client kick.
 	
 	----------------------------------------------------------------------------------------------
 */
@@ -59,6 +60,8 @@ _afkTimeMax = 10*60; // maximum 10 minutes AFK time (default).
 	DO NOT EDIT BELOW HERE!
 	------------------------------------------------------------------------------------------	*/
 
+if !(hasInterface) exitWith {};
+	
 waitUntil {alive player};
 
 afkTimerCheck = true;
