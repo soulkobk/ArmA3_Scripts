@@ -60,12 +60,6 @@
 	Underneath the line...
 	player forceAddUniform _class;
 
-	Edit...
-	\client\clientEvents\onRespawn.sqf
-	And paste in...
-	[] spawn SL_customUniformCheck;
-	At the bottom of the script.
-	
 	Lastly, customize the configuration below via the '_playerCustomUniforms' variable/array.
 	
 	*NOTE, no uniform templates are supplied with this script, it is entirely up to the end user
