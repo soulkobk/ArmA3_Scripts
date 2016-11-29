@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: buryDeadBody.sqf
-	Version: 1.0.2
+	Version: 1.0.3
 	Author: soulkobk (soulkobk.blogspot.com) (base script authors MercyfulFate, AgentRev, Gigatek)
 	Creation Date: 12:47 PM 29/10/2016
-	Modification Date: 6:41 PM 08/11/2016
+	Modification Date: 4:18 PM 29/11/2016
 
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). The script adds a 'Bury Dead Body'
@@ -39,7 +39,7 @@
 	\client\functions\playerActions.sqf
 	
 	And paste in...
-	["<img image='addons\buryDeadBody\buryDeadBody.paa'/> Bury Dead Body", "addons\buryDeadBody\buryDeadBody.sqf", [], 1.1, false, false, "", "!isNull cursorObject && !alive cursorObject && {cursorObject isKindOf 'Man' && player distance cursorObject <= 2}"],
+	["<img image='addons\buryDeadBody\buryDeadBody.paa'/> Bury Dead Body", "addons\buryDeadBody\buryDeadBody.sqf", [], 1.1, false, false, "", "!isNull cursorTarget && !alive cursorTarget && {cursorTarget isKindOf 'Man' && player distance cursorTarget <= 2}"],
 	
 	Above the line...
 	[format ["<img image='client\icons\playerMenu.paa' color='%1'/>.......
@@ -53,6 +53,8 @@
 	1.0.1 -	updated setVariable to global, line 91 and 131.
 	1.0.2 -	updated enableSimulationGlobal function for server-side execution and updated
 			deleteVehicle to use objectFromNetId.
+	1.0.3 -	changed all cursorObject to cursorTarget for more consistant error checking
+			(playerActions.sqf entry also updated).
 
 	----------------------------------------------------------------------------------------------
 */
@@ -71,7 +73,7 @@ _animation = "AinvPknlMstpSlayWrflDnon_medic";
 #define ERR_ALIVE "This Is No Dead Body!"
 #define ERR_CANCELLED "Burying Dead Body Cancelled!"
 
-private _deadBody = cursorObject;
+private _deadBody = cursorTarget;
 
 if ((alive _deadBody) && !(_deadBody isKindOf "Man")) exitWith {};
 
