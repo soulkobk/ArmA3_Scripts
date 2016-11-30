@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: buryDeadBody.sqf
-	Version: 1.0.3
+	Version: 1.0.4
 	Author: soulkobk (soulkobk.blogspot.com) (base script authors MercyfulFate, AgentRev, Gigatek)
 	Creation Date: 12:47 PM 29/10/2016
-	Modification Date: 4:18 PM 29/11/2016
+	Modification Date: 5:52 PM 30/11/2016
 
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). The script adds a 'Bury Dead Body'
@@ -39,7 +39,7 @@
 	\client\functions\playerActions.sqf
 	
 	And paste in...
-	["<img image='addons\buryDeadBody\buryDeadBody.paa'/> Bury Dead Body", "addons\buryDeadBody\buryDeadBody.sqf", [], 1.1, false, false, "", "!isNull cursorTarget && !alive cursorTarget && {cursorTarget isKindOf 'Man' && player distance cursorTarget <= 2}"],
+	["<img image='addons\buryDeadBody\buryDeadBody.paa'/> Bury Dead Body", "addons\buryDeadBody\buryDeadBody.sqf", [], 1.1, false, false, "", "!(([allDeadMen,[],{player distance _x},'ASCEND',{((player distance _x) < 2) && !(_x getVariable ['buryDeadBodyBurried',false])}] call BIS_fnc_sortBy) isEqualTo [])"],
 	
 	Above the line...
 	[format ["<img image='client\icons\playerMenu.paa' color='%1'/>.......
@@ -55,6 +55,8 @@
 			deleteVehicle to use objectFromNetId.
 	1.0.3 -	changed all cursorObject to cursorTarget for more consistant error checking
 			(playerActions.sqf entry also updated).
+	1.0.4 -	redid closest dead body check (addAction and script). script now uses proximity
+			(BIS_fnc_sortBy) which is much more consistent for accessing dead bodies.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -62,6 +64,20 @@
 _price = 5000;
 _duration = (round (random 30)) + 30;
 _animation = "AinvPknlMstpSlayWrflDnon_medic";
+
+_cleanUpObjects = [
+	"Land_Suitcase_F", // Repair Kit
+	"Land_BakedBeans_F", // Canned Food
+	"Land_BottlePlastic_V2_F", // Water Bottle
+	"Land_Sleeping_bag_folded_F", // Spawn Beacon
+	"Land_CanisterFuel_F", // Jerrycan
+	"Land_CanisterOil_F", // Syphon Hose
+	"Land_Ground_sheet_folded_OPFOR_F", // Camo Net
+	"GroundWeaponHolder", // static weapon holder, all weapons, weapon attachments, magazines, throwables, backpacks, vests, uniforms, helments, etc
+	"WeaponHolderSimulated" // simulated weapon holder, all weapons, weapon attachments, magazines, throwables, backpacks, vests, uniforms, helments, etc
+];
+
+_maxObjectDistanceGather = 3; // max distance from dead body to gather and delete items.
 
 /*	------------------------------------------------------------------------------------------
 	DO NOT EDIT BELOW HERE!
@@ -73,7 +89,7 @@ _animation = "AinvPknlMstpSlayWrflDnon_medic";
 #define ERR_ALIVE "This Is No Dead Body!"
 #define ERR_CANCELLED "Burying Dead Body Cancelled!"
 
-private _deadBody = cursorTarget;
+private _deadBody = ([allDeadMen,[],{player distance _x},"ASCEND",{(player distance _x) < 2}] call BIS_fnc_sortBy) select 0;
 
 if ((alive _deadBody) && !(_deadBody isKindOf "Man")) exitWith {};
 
@@ -134,7 +150,7 @@ if (_outcome) then
 	["Burying Of Dead Body Successful!", 5] call mf_notify_client;
 	_deadBody setVariable ["buryDeadBodyBurried",true,true];
 	player setVariable ["cmoney",(_playerCMoney - _price),true];
-	_deadBodyObjects = nearestObjects [_deadBody, ["GroundWeaponHolder","WeaponHolderSimulated"], 2];
+	_deadBodyObjects = nearestObjects [_deadBody, _cleanUpObjects, _maxObjectDistanceGather];
 	{
 		deleteVehicle objectFromNetId (netID _x);
 	} forEach _deadBodyObjects;
