@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: buryDeadBody.sqf
-	Version: 1.0.4
+	Version: 1.0.5
 	Author: soulkobk (soulkobk.blogspot.com) (base script authors MercyfulFate, AgentRev, Gigatek)
 	Creation Date: 12:47 PM 29/10/2016
-	Modification Date: 5:52 PM 30/11/2016
+	Modification Date: 7:38 PM 23/12/2016
 
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). The script adds a 'Bury Dead Body'
@@ -57,6 +57,7 @@
 			(playerActions.sqf entry also updated).
 	1.0.4 -	redid closest dead body check (addAction and script). script now uses proximity
 			(BIS_fnc_sortBy) which is much more consistent for accessing dead bodies.
+	1.0.5 -	changed animation loop to action "hideBody" and removed some unneeded code.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -147,37 +148,33 @@ private _outcome = [_duration, _animation, _checks, [_deadBody]] call a3w_action
 
 if (_outcome) then
 {
-	["Burying Of Dead Body Successful!", 5] call mf_notify_client;
 	_deadBody setVariable ["buryDeadBodyBurried",true,true];
 	player setVariable ["cmoney",(_playerCMoney - _price),true];
 	_deadBodyObjects = nearestObjects [_deadBody, _cleanUpObjects, _maxObjectDistanceGather];
 	{
 		deleteVehicle objectFromNetId (netID _x);
 	} forEach _deadBodyObjects;
-	pvar_enableSimulationGlobal = [_deadBody,false];
-	publicVariableServer "pvar_enableSimulationGlobal";
 	uiSleep 0.5;
-	_deadBodyPos = getPosATL _deadBody;
+	player action ["hideBody",_deadBody];
+	_buryTime = time + 5;
+	waitUntil {time > _buryTime};
 	_deadBodyLoop = 0;
 	while {(!isNull _deadBody) || (_deadBodyLoop < 50)} do
 	{
-		for "_i" from (_deadBodyPos select 2) to ((_deadBodyPos select 2) - 0.5) step -0.01 do
-		{
-			_deadBodyPos set [2,_i];
-			_deadBody setPosATL _deadBodyPos;
-			uiSleep 0.1;
-		};
 		deleteVehicle objectFromNetId (netID _deadBody);
 		_deadBodyLoop = _deadBodyLoop + 1;
-		uiSleep 0.5;
+		uiSleep 0.1;
 	};
 	if (!isNull _deadBody) then
 	{
 		["Someone Dug Up The Dead Body, You Get A Refund!", 5] call mf_notify_client;
-		pvar_enableSimulationGlobal = [_deadBody,true];
-		publicVariableServer "pvar_enableSimulationGlobal";
+		_deadBody setVariable ["buryDeadBodyBurried",nil,true];
 		uiSleep 0.5;
 		player setVariable ["cmoney",(_playerCMoney + _price),true];
+	}
+	else
+	{
+		["Burying Of Dead Body Successful!", 5] call mf_notify_client;
 	};
 };
 
