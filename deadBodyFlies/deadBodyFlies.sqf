@@ -19,10 +19,10 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: deadBodyFlies.sqf
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 8:34 PM 16/12/2016
-	Modification Date: 8:34 PM 16/12/2016
+	Modification Date: 7:38 PM 23/12/2016
 
 	Description:
 	For use with A3Wasteland 1.Xx mission (A3Wasteland.com). The script spawns flies with sound
@@ -65,6 +65,8 @@
 
 	Change Log:
 	1.0.0 -	original base script.
+	1.0.1 -	added check for water surface and depth (exit if on/under water, as dead bodies will
+			sink to the bottom... there are no flies under water!). reduced flies particle loop.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -75,6 +77,8 @@
 
 _deadUnit = _this select 0;
 
+if ((surfaceIsWater (getPosASL _deadUnit)) && (((getPosASL _deadUnit) select 2) < 0)) exitWith {};
+
 [_deadUnit] spawn
 {
 	params ["_deadUnit"];
@@ -84,7 +88,7 @@ _deadUnit = _this select 0;
 	uiSleep (_corpseTime / 4);
 	_deadUnitPosFlies = getPosATL _deadUnit;
 	_fliesArr = [];
-	for "_fly" from 0 to 3 do
+	for "_fly" from 0 to 1 do
 	{
 		_flies = [_deadUnitPosFlies, 0.05, 1.5] call BIS_fnc_flies;
 		_fliesArr pushBackUnique _flies;
