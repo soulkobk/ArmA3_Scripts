@@ -1,0 +1,487 @@
+version=52;
+class EditorData
+{
+	moveGridStep=0.25;
+	angleGridStep=0.017453292;
+	scaleGridStep=0.1;
+	autoGroupingDist=10;
+	toggles=1025;
+	class ItemIDProvider
+	{
+		nextID=76;
+	};
+	class Camera
+	{
+		pos[]={3792.5034,193.85974,4742.5};
+		dir[]={-0.92219347,-0.11947118,-0.36784151};
+		up[]={-0.11097825,0.99283695,-0.044266563};
+		aside[]={-0.37049416,-4.490139e-007,0.92884558};
+	};
+};
+binarizationWanted=0;
+addons[]=
+{
+	"A3_Ui_F"
+};
+class AddonsMetaData
+{
+	class List
+	{
+		items=1;
+		class Item0
+		{
+			className="A3_Ui_F";
+			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+	};
+};
+randomSeed=8454095;
+class ScenarioData
+{
+	author="soul[kobk]";
+};
+class Mission
+{
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=12;
+		minute=0;
+		startFogDecay=0.014;
+		forecastFogDecay=0.014;
+	};
+	class Entities
+	{
+		items=38;
+		class Item0
+		{
+			dataType="Marker";
+			position[]={3942.9861,821274.81,6344.668};
+			name="RoadBlockMission_0";
+			type="Empty";
+			colorName="ColorPink";
+			angle=269.96793;
+			id=38;
+			atlOffset=821157.75;
+		};
+		class Item1
+		{
+			dataType="Marker";
+			position[]={4964.7178,157.83092,6228.6973};
+			name="RoadBlockMission_1";
+			type="Empty";
+			colorName="ColorPink";
+			angle=301.83914;
+			id=39;
+			atlOffset=0.012512207;
+		};
+		class Item2
+		{
+			dataType="Marker";
+			position[]={5151.6621,821322.31,5777.0879};
+			name="RoadBlockMission_10";
+			type="Empty";
+			colorName="ColorPink";
+			angle=247.39862;
+			id=40;
+			atlOffset=821157.56;
+		};
+		class Item3
+		{
+			dataType="Marker";
+			position[]={5607.3096,821264,5382.377};
+			name="RoadBlockMission_11";
+			type="Empty";
+			colorName="ColorPink";
+			angle=325.01941;
+			id=41;
+			atlOffset=821157.69;
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={5900.8984,821205.31,5392.0898};
+			name="RoadBlockMission_12";
+			type="Empty";
+			colorName="ColorPink";
+			angle=216.16406;
+			id=42;
+			atlOffset=821157.56;
+		};
+		class Item5
+		{
+			dataType="Marker";
+			position[]={5946.2822,821245.31,4951.0029};
+			name="RoadBlockMission_13";
+			type="Empty";
+			colorName="ColorPink";
+			angle=266.40002;
+			id=43;
+			atlOffset=821157.69;
+		};
+		class Item6
+		{
+			dataType="Marker";
+			position[]={6356.8608,821183.81,5178.5186};
+			name="RoadBlockMission_14";
+			type="Empty";
+			colorName="ColorPink";
+			angle=234.57866;
+			id=44;
+			atlOffset=821157.56;
+		};
+		class Item7
+		{
+			dataType="Marker";
+			position[]={5273.9873,821327.25,5554.7959};
+			name="RoadBlockMission_15";
+			type="Empty";
+			colorName="ColorPink";
+			angle=312.81482;
+			id=45;
+			atlOffset=821157.81;
+		};
+		class Item8
+		{
+			dataType="Marker";
+			position[]={5221.666,821348.63,5323.6875};
+			name="RoadBlockMission_16";
+			type="Empty";
+			colorName="ColorPink";
+			angle=267.23462;
+			id=46;
+			atlOffset=821157.69;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={5050.8765,821336.56,4586.2451};
+			name="RoadBlockMission_17";
+			type="Empty";
+			colorName="ColorPink";
+			angle=204.83539;
+			id=47;
+			atlOffset=821157.69;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={5320.9902,821282.31,4321.0186};
+			name="RoadBlockMission_18";
+			type="Empty";
+			colorName="ColorPink";
+			angle=359.3999;
+			id=48;
+			atlOffset=821157.94;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={4702.1812,821341.13,4397.9478};
+			name="RoadBlockMission_19";
+			type="Empty";
+			colorName="ColorPink";
+			angle=249.13513;
+			id=49;
+			atlOffset=821157.69;
+		};
+		class Item12
+		{
+			dataType="Marker";
+			position[]={3448.7014,821243.25,5385.6055};
+			name="RoadBlockMission_2";
+			type="Empty";
+			colorName="ColorPink";
+			angle=333.53931;
+			id=50;
+			atlOffset=821157.69;
+		};
+		class Item13
+		{
+			dataType="Marker";
+			position[]={4089.8743,821374.44,4553.7256};
+			name="RoadBlockMission_20";
+			type="Empty";
+			colorName="ColorPink";
+			angle=279.45306;
+			id=51;
+			atlOffset=821157.69;
+		};
+		class Item14
+		{
+			dataType="Marker";
+			position[]={2783.9456,821227.94,4467.3467};
+			name="RoadBlockMission_21";
+			type="Empty";
+			colorName="ColorPink";
+			angle=278.81198;
+			id=52;
+			atlOffset=821157.81;
+		};
+		class Item15
+		{
+			dataType="Marker";
+			position[]={3616.6282,821340.38,4505.2075};
+			name="RoadBlockMission_22";
+			type="Empty";
+			colorName="ColorPink";
+			angle=255.02644;
+			id=53;
+			atlOffset=821157.69;
+		};
+		class Item16
+		{
+			dataType="Marker";
+			position[]={4430.4971,821361.75,4125.1943};
+			name="RoadBlockMission_23";
+			type="Empty";
+			colorName="ColorPink";
+			angle=198.8322;
+			id=54;
+			atlOffset=821157.69;
+		};
+		class Item17
+		{
+			dataType="Marker";
+			position[]={4242.0811,821364.38,3847.668};
+			name="RoadBlockMission_24";
+			type="Empty";
+			colorName="ColorPink";
+			angle=327.81451;
+			id=55;
+			atlOffset=821157.69;
+		};
+		class Item18
+		{
+			dataType="Marker";
+			position[]={4159.2432,821373.13,3514.8818};
+			name="RoadBlockMission_25";
+			type="Empty";
+			colorName="ColorPink";
+			angle=238.13986;
+			id=56;
+			atlOffset=821157.69;
+		};
+		class Item19
+		{
+			dataType="Marker";
+			position[]={3836.7781,821342.44,3695.9097};
+			name="RoadBlockMission_26";
+			type="Empty";
+			colorName="ColorPink";
+			angle=315.15924;
+			id=57;
+			atlOffset=821157.69;
+		};
+		class Item20
+		{
+			dataType="Marker";
+			position[]={2932.4243,821222.88,3811.627};
+			name="RoadBlockMission_27";
+			type="Empty";
+			colorName="ColorPink";
+			angle=290.93808;
+			id=58;
+			atlOffset=821157.81;
+		};
+		class Item21
+		{
+			dataType="Marker";
+			position[]={2310.0271,821161.31,4061.0835};
+			name="RoadBlockMission_28";
+			type="Empty";
+			colorName="ColorPink";
+			angle=354.83444;
+			id=59;
+			atlOffset=821157.69;
+		};
+		class Item22
+		{
+			dataType="Marker";
+			position[]={2116.2656,821166.38,3611.6943};
+			name="RoadBlockMission_29";
+			type="Empty";
+			colorName="ColorPink";
+			angle=246.84169;
+			id=60;
+			atlOffset=821157.69;
+		};
+		class Item23
+		{
+			dataType="Marker";
+			position[]={3311.2996,821333.81,4920.1338};
+			name="RoadBlockMission_3";
+			type="Empty";
+			colorName="ColorPink";
+			angle=255.90172;
+			id=61;
+			atlOffset=821157.81;
+		};
+		class Item24
+		{
+			dataType="Marker";
+			position[]={3783.8289,821318.75,3289.3594};
+			name="RoadBlockMission_30";
+			type="Empty";
+			colorName="ColorPink";
+			angle=208.21184;
+			id=62;
+			atlOffset=821157.69;
+		};
+		class Item25
+		{
+			dataType="Marker";
+			position[]={3487.7085,821301.44,2643.7451};
+			name="RoadBlockMission_31";
+			type="Empty";
+			colorName="ColorPink";
+			angle=261.39139;
+			id=63;
+			atlOffset=821157.69;
+		};
+		class Item26
+		{
+			dataType="Marker";
+			position[]={2961.1033,821319.44,1956.3989};
+			name="RoadBlockMission_32";
+			type="Empty";
+			colorName="ColorPink";
+			angle=230.11101;
+			id=64;
+			atlOffset=821157.81;
+		};
+		class Item27
+		{
+			dataType="Marker";
+			position[]={3095.2776,821246.88,1548.4829};
+			name="RoadBlockMission_33";
+			type="Empty";
+			colorName="ColorPink";
+			angle=218.73199;
+			id=65;
+			atlOffset=821157.69;
+		};
+		class Item28
+		{
+			dataType="Marker";
+			position[]={2840.6841,821200.44,1370.4697};
+			name="RoadBlockMission_34";
+			type="Empty";
+			colorName="ColorPink";
+			angle=220.06526;
+			id=66;
+			atlOffset=821157.81;
+		};
+		class Item29
+		{
+			dataType="Marker";
+			position[]={2432.9419,821249,2335.0146};
+			name="RoadBlockMission_35";
+			type="Empty";
+			colorName="ColorPink";
+			angle=222.01129;
+			id=67;
+			atlOffset=821157.94;
+		};
+		class Item30
+		{
+			dataType="Marker";
+			position[]={2950.5984,821307.13,2509.4336};
+			name="RoadBlockMission_36";
+			type="Empty";
+			colorName="ColorPink";
+			angle=234.77698;
+			id=68;
+			atlOffset=821157.81;
+		};
+		class Item31
+		{
+			dataType="Marker";
+			position[]={2084.5718,821193.44,2345.1133};
+			name="RoadBlockMission_37";
+			type="Empty";
+			colorName="ColorPink";
+			angle=311.86444;
+			id=69;
+			atlOffset=821157.69;
+		};
+		class Item32
+		{
+			dataType="Marker";
+			position[]={2937.8162,821297.44,4925.5664};
+			name="RoadBlockMission_4";
+			type="Empty";
+			colorName="ColorPink";
+			angle=294.38181;
+			id=70;
+			atlOffset=821157.69;
+		};
+		class Item33
+		{
+			dataType="Marker";
+			position[]={2624.1541,821160.31,5810.2676};
+			name="RoadBlockMission_5";
+			type="Empty";
+			colorName="ColorPink";
+			angle=313.91751;
+			id=71;
+			atlOffset=821157.69;
+		};
+		class Item34
+		{
+			dataType="Marker";
+			position[]={2331.5613,821161.63,5797.8662};
+			name="RoadBlockMission_6";
+			type="Empty";
+			colorName="ColorPink";
+			angle=233.96902;
+			id=72;
+			atlOffset=821157.69;
+		};
+		class Item35
+		{
+			dataType="Marker";
+			position[]={3199.5417,821193.31,6197.8086};
+			name="RoadBlockMission_7";
+			type="Empty";
+			colorName="ColorPink";
+			angle=244.79277;
+			id=73;
+			atlOffset=821157.81;
+		};
+		class Item36
+		{
+			dataType="Marker";
+			position[]={3768.8025,821225.44,6772.1924};
+			name="RoadBlockMission_8";
+			type="Empty";
+			colorName="ColorPink";
+			angle=269.72092;
+			id=74;
+			atlOffset=821157.69;
+		};
+		class Item37
+		{
+			dataType="Marker";
+			position[]={3732.5266,821231.31,5763.8545};
+			name="RoadBlockMission_9";
+			type="Empty";
+			colorName="ColorPink";
+			angle=264.16306;
+			id=75;
+			atlOffset=821157.81;
+		};
+	};
+};

@@ -1,0 +1,70 @@
+/*
+	----------------------------------------------------------------------------------------------
+	
+	Copyright © 2016 soulkobk (soulkobk.blogspot.com)
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as
+	published by the Free Software Foundation, either version 3 of the
+	License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU Affero General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+	----------------------------------------------------------------------------------------------
+	
+	Name: roadBlocksInstructions.txt
+	Version: 1.0
+	Author: soulkobk (soulkobk.blogspot.com)
+	Creation Date: 8:05 PM 18/09/2016
+	Modification Date: 8:05 PM 18/09/2016
+	
+	Instructions:
+	
+	*PLEASE NOTE, you must use soulkobk' randomCrateLoadOut script (github.com/soulkobk) or edit the mission_RoadBlock.sqf
+
+	Place file at...
+	\server\missions\sideMissions\mission_RoadBlock.sqf
+	
+	Place file at...
+	\server\missions\factoryMethods\createRoadBlock.sqf
+
+	Place directory and contents at...
+	\server\missions\roadBlocks
+
+	Edit...
+	\server\missions\setupMissionArrays.sqf
+
+	Add...
+	["mission_RoadBlock", 1.5],
+	...to...
+	Sidemissions = [] array.
+
+	Add...
+	RoadBlockMissionMarkers = [];
+	...before the forEach loop...
+	forEach allMapMarkers;
+
+	Add...
+	case (["RoadBlockMission_", _x] call fn_startsWith):
+	{
+		RoadBlockMissionMarkers pushBack [_x, false];
+	};
+	...in to the forEach loop...
+	forEach allMapMarkers;
+
+	Load the supplied STRATIS mission.sqm file (3DEN), and copy ALL the 'RoadBlockMission' markers to clipboard.
+
+	Load your A3Wasteland STRATIS mission file (3DEN), and delete ALL markers that are for any old RoadBlockMission's
+
+	Paste in (SHIFT + CTRL + V) the NEW RoadBlockMission markers to the map, then press CTRL + S to save your mission file.
+
+	Complete!
+	
+	----------------------------------------------------------------------------------------------
+*/
