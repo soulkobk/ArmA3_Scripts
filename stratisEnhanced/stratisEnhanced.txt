@@ -1,0 +1,56 @@
+/*
+	----------------------------------------------------------------------------------------------
+	
+	Copyright © 2017 soulkobk (soulkobk.blogspot.com)
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as
+	published by the Free Software Foundation, either version 3 of the
+	License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU Affero General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+	----------------------------------------------------------------------------------------------
+	
+	Name: stratisEnhanced.txt / mission.sqm
+	Version: 1.0
+	Author: soulkobk (soulkobk.blogspot.com)
+	Creation Date: 4:32 PM 30/05/2017
+	Modification Date: 4:32 PM 30/05/2017
+	
+	Description:
+	The supplied mission.sqm file includes an 'enhanced Stratis' consisting of building compilations
+	all over the map of Stratis in order to fill the void of bare terrain within mission(s).
+	
+	Instructions:
+	(1) Load the supplied STRATIS mission.sqm file (3DEN), and select/copy ALL decendants of 'Map Objects' to clipboard.
+	(2) Load your own STRATIS mission file (3DEN).
+	
+	!!!
+	
+	MAKE SURE THAT IN THE EDEN EDITOR THAT 'TOGGLE VERTICAL MODE' HAS NO TERRAIN SNAPPING...
+	
+	AND
+	
+	...'TOGGLE SURFACE SNAPPING' HAS NO SURFACE SNAPPING...
+	
+	ELSE
+	
+	...THE COMPOSITIONS WILL NOT PASTE IN PROPERLY! (INCORRECT HIGHTS AND INCORRECT TERRAIN SNAPPING)
+	
+	!!!
+
+	(3) Paste in (SHIFT + CTRL + V) the NEW building compilations by soulkobk to the map of STRATIS, then press CTRL + S to save your mission file.
+	(4) Complete!
+	
+	*NOTE*	If you use any or all of these compliations within your own mission, please be sure to
+			keep this txt file intact and attached within the mission.pbo (give credit where credit is due).
+	
+	----------------------------------------------------------------------------------------------
+*/
