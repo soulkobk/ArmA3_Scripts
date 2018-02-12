@@ -1,0 +1,564 @@
+version=53;
+class EditorData
+{
+	moveGridStep=0.125;
+	angleGridStep=0.2617994;
+	scaleGridStep=1;
+	autoGroupingDist=10;
+	toggles=2;
+	class ItemIDProvider
+	{
+		nextID=363;
+	};
+	class MarkerIDProvider
+	{
+		nextID=4;
+	};
+	class LayerIndexProvider
+	{
+		nextID=8;
+	};
+	class Camera
+	{
+		pos[]={3612.0059,17.276978,12963.581};
+		dir[]={-0.044086438,-0.12022101,0.99177378};
+		up[]={-0.0053390623,0.99274653,0.12011024};
+		aside[]={0.99901944,-4.1670319e-008,0.044408601};
+	};
+};
+binarizationWanted=0;
+addons[]=
+{
+	"A3_Characters_F",
+	"A3_Ui_F"
+};
+class AddonsMetaData
+{
+	class List
+	{
+		items=2;
+		class Item0
+		{
+			className="A3_Characters_F";
+			name="Arma 3 Alpha - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item1
+		{
+			className="A3_Ui_F";
+			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+	};
+};
+randomSeed=13256779;
+class ScenarioData
+{
+	author="soul[kobk]";
+};
+class Mission
+{
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=6;
+		day=24;
+		hour=12;
+		minute=0;
+		startFogDecay=0.013;
+		forecastFogDecay=0.013;
+	};
+	class Entities
+	{
+		items=34;
+		class Item0
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={3611.8186,13.472687,12971.123};
+						angles[]={6.2818413,0,0.034644786};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						skill=1;
+						isPlayer=1;
+						isPlayable=1;
+					};
+					id=1;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="allowDamage";
+							expression="_this allowdamage _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male11ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.02;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="enableStamina";
+							expression="_this enablestamina _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=4;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=0;
+		};
+		class Item1
+		{
+			dataType="Marker";
+			position[]={3633.3259,5.869,12942.344};
+			name="lootSpawner_0";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=330;
+			atlOffset=-9.0708904;
+		};
+		class Item2
+		{
+			dataType="Marker";
+			position[]={3832.623,23.353027,13902.092};
+			name="lootSpawner_1";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=331;
+			atlOffset=-9.5497284;
+		};
+		class Item3
+		{
+			dataType="Marker";
+			position[]={4170.8633,52.438232,11728.167};
+			name="lootSpawner_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=332;
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={5127.8574,49.632881,11222.145};
+			name="lootSpawner_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=333;
+		};
+		class Item5
+		{
+			dataType="Marker";
+			position[]={9120.5127,19.159924,11967.211};
+			name="lootSpawner_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=334;
+		};
+		class Item6
+		{
+			dataType="Marker";
+			position[]={10661.646,16.568527,12240.401};
+			name="lootSpawner_5";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=335;
+		};
+		class Item7
+		{
+			dataType="Marker";
+			position[]={11000.323,26.466253,13438.713};
+			name="lootSpawner_6";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=336;
+		};
+		class Item8
+		{
+			dataType="Marker";
+			position[]={12560.099,14.729858,14338.997};
+			name="lootSpawner_7";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=337;
+			atlOffset=1.4158573;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={14492.73,21.312841,17660.742};
+			name="lootSpawner_8";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=338;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={14039.091,25.345215,18688.307};
+			name="lootSpawner_9";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=339;
+			atlOffset=-2.4122181;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={16293.396,24.146118,17154.166};
+			name="lootSpawner_10";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=340;
+			atlOffset=5.0399284;
+		};
+		class Item12
+		{
+			dataType="Marker";
+			position[]={18828.055,30.209373,16601.096};
+			name="lootSpawner_11";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=341;
+		};
+		class Item13
+		{
+			dataType="Marker";
+			position[]={18104.092,23.072756,15204.105};
+			name="lootSpawner_12";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=342;
+		};
+		class Item14
+		{
+			dataType="Marker";
+			position[]={19361.729,38.512836,13239.149};
+			name="lootSpawner_13";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=343;
+		};
+		class Item15
+		{
+			dataType="Marker";
+			position[]={20225.508,53.929939,11665.203};
+			name="lootSpawner_14";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=344;
+		};
+		class Item16
+		{
+			dataType="Marker";
+			position[]={21699.93,15.260527,7554.9536};
+			name="lootSpawner_15";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=345;
+		};
+		class Item17
+		{
+			dataType="Marker";
+			position[]={20520.662,34.183426,8869.6523};
+			name="lootSpawner_16";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=346;
+		};
+		class Item18
+		{
+			dataType="Marker";
+			position[]={4891.3989,71.443588,16194.488};
+			name="lootSpawner_17";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=347;
+		};
+		class Item19
+		{
+			dataType="Marker";
+			position[]={7122.3125,119.40763,16473.885};
+			name="lootSpawner_18";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=348;
+		};
+		class Item20
+		{
+			dataType="Marker";
+			position[]={9343.9072,117.54961,15908.881};
+			name="lootSpawner_19";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=349;
+			atlOffset=-7.6293945e-006;
+		};
+		class Item21
+		{
+			dataType="Marker";
+			position[]={8660.3428,181.42554,18274.463};
+			name="lootSpawner_20";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=350;
+		};
+		class Item22
+		{
+			dataType="Marker";
+			position[]={10331.975,126.50407,19059.887};
+			name="lootSpawner_21";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=351;
+			atlOffset=-7.6293945e-006;
+		};
+		class Item23
+		{
+			dataType="Marker";
+			position[]={9464.8486,128.05592,20277.846};
+			name="lootSpawner_22";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=352;
+		};
+		class Item24
+		{
+			dataType="Marker";
+			position[]={4720.1074,274.7402,21688.631};
+			name="lootSpawner_23";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=353;
+		};
+		class Item25
+		{
+			dataType="Marker";
+			position[]={14614.396,46.440727,20772.326};
+			name="lootSpawner_24";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=354;
+		};
+		class Item26
+		{
+			dataType="Marker";
+			position[]={20956.668,42.657288,16962.205};
+			name="lootSpawner_25";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=355;
+		};
+		class Item27
+		{
+			dataType="Marker";
+			position[]={21535.918,15.70372,16167.37};
+			name="lootSpawner_26";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=356;
+			atlOffset=-0.55144119;
+		};
+		class Item28
+		{
+			dataType="Marker";
+			position[]={25698.42,20.334797,21327.785};
+			name="lootSpawner_27";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=357;
+		};
+		class Item29
+		{
+			dataType="Marker";
+			position[]={26972.344,19.72823,23237.012};
+			name="lootSpawner_28";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=500;
+			b=500;
+			id=358;
+		};
+		class Item30
+		{
+			dataType="Marker";
+			position[]={4228,61.014,13000};
+			name="marker_3";
+			text="To gather building positions press 'G'.";
+			type="mil_circle";
+			id=359;
+			atlOffset=41.123268;
+		};
+		class Item31
+		{
+			dataType="Marker";
+			position[]={4228,22.608999,12900};
+			name="marker_4";
+			text="To place a building position press 'F'.";
+			type="mil_circle";
+			id=360;
+			atlOffset=-6.2346115;
+		};
+		class Item32
+		{
+			dataType="Marker";
+			position[]={4228,57.852001,12800};
+			name="marker_5";
+			text="To destroy a building press 'T'.";
+			type="mil_circle";
+			id=361;
+			atlOffset=30.260902;
+		};
+		class Item33
+		{
+			dataType="Marker";
+			position[]={4228,57.852001,12700};
+			name="marker_6";
+			text="To hide a building press 'H'.";
+			type="mil_circle";
+			id=362;
+			atlOffset=4.6733131;
+		};
+	};
+};
