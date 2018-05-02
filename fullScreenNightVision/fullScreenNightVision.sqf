@@ -45,6 +45,7 @@
 
 	Change Log:
 	1.0 - original base script.
+	1.1 - fixed event handler bind. small routine changes.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -81,9 +82,12 @@ SL_fn_fullScreenNightVision = {
 			case 1: {
 				if (cameraView != "GUNNER") then
 				{
-					player action ["nvGogglesOff", player];
-					SL_var_fullScreenNightVisionMode = currentVisionMode player;
-					_handled = true;
+					if (goggles player in SL_var_fullScreenNightVision) then
+					{
+						player action ["nvGogglesOff", player];
+						SL_var_fullScreenNightVisionMode = currentVisionMode player;
+						_handled = true;
+					};
 				};
 			};
 		};
@@ -91,22 +95,21 @@ SL_fn_fullScreenNightVision = {
 	_handled
 };
 
+waitUntil {alive player};
+
 player addEventHandler ["GetOutMan", {
 	params ["_player", "_role", "_vehicle", "_turret"];
 	switch SL_var_fullScreenNightVisionMode do
 	{
 		case 1: {
-			if (cameraView != "GUNNER") then
+			if (goggles _player in SL_var_fullScreenNightVision) then
 			{
-				if (goggles _player in SL_var_fullScreenNightVision) then
-				{
-					_player action ["nvGoggles", _player];
-					SL_var_fullScreenNightVisionMode = currentVisionMode _player;
-				};
+				_player action ["nvGoggles", _player];
+				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
 			};
 		};
 		case 0: {
-			if (cameraView != "GUNNER") then
+			if (goggles _player in SL_var_fullScreenNightVision) then
 			{
 				_player action ["nvGogglesOff", _player];
 				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
