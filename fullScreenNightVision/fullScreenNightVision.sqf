@@ -19,23 +19,23 @@
 	----------------------------------------------------------------------------------------------
 
 	Name: fullScreenNightVision.sqf
-	Version: 1.0
+	Version: 1.2
 	Author: soulkobk (soulkobk.blogspot.com)
 	Creation Date: 12:54 PM 2/05/2018
-	Modification Date: 12:54 PM 2/05/2018
+	Modification Date: 9:13 PM 21/05/2018
 
 	Description:
 	This script will allow night vision mode in FULL SCREEN, no black borders! No mod needed!
 	How? Unequip the Night Vision Goggles altogether (hmd slot), and equip Combat Goggles (Green)
 	(goggles slot) to replace the night vision optics (NVG head gear will function as normal if
 	they are equipped to the hmd slot).
-	
+
 	* Unequipped NVGoggles and equipped Combat Goggles (Green) = FULL SCREEN NIGHT VISION.
 	* Equipped NVGoggles and equipped Combat Goggles (Green) = black border night vision.
 	* Unequipped Combat Goggles (Green) and equipped NVGoggles = black border night vision.
-	
+
 	Enjoy a simple mod-free version of full screen night vision without any use of custom ppEffects.
-	
+
 	Place the following code within your init.sqf file...
 	[] execVM "<your path here>\fullScreenNightVision.sqf";
 
@@ -46,6 +46,9 @@
 	Change Log:
 	1.0 - original base script.
 	1.1 - fixed event handler bind. small routine changes.
+	1.2 - code updates, added event handlers for put/take so night vision does NOT turn off
+	      when dropping or picking up items from inventory. added steath balaclava with green
+		  goggles to accepted list.
 
 	----------------------------------------------------------------------------------------------
 */
@@ -54,7 +57,8 @@ if (!hasInterface) exitWith {}; // DO NOT DELETE THIS!
 
 SL_var_fullScreenNightVision =
 [
-	"G_Combat_Goggles_tna_F"
+	"G_Combat_Goggles_tna_F", // Combat Goggles (Green).
+	"G_Balaclava_TI_G_tna_F"  // Stealth Balaclava (Green, Goggles).
 ];
 
 /*	------------------------------------------------------------------------------------------
@@ -64,30 +68,24 @@ SL_var_fullScreenNightVision =
 SL_fn_fullScreenNightVision = {
 	params ["_displayCode","_keyCode","_isShift","_isCtrl","_isAlt"];
 	_handled = false;
-	if (_keyCode in actionKeys "NightVision") then
+	if ((_keyCode in actionKeys "NightVision") && (goggles player in SL_var_fullScreenNightVision)) then
 	{
 		switch SL_var_fullScreenNightVisionMode do
 		{
 			case 0: {
 				if (cameraView != "GUNNER") then
 				{
-					if (goggles player in SL_var_fullScreenNightVision) then
-					{
-						player action ["nvGoggles", player];
-						SL_var_fullScreenNightVisionMode = currentVisionMode player;
-						_handled = true;
-					};
+					player action ["nvGoggles", player];
+					SL_var_fullScreenNightVisionMode = currentVisionMode player;
+					_handled = true;
 				};
 			};
 			case 1: {
 				if (cameraView != "GUNNER") then
 				{
-					if (goggles player in SL_var_fullScreenNightVision) then
-					{
-						player action ["nvGogglesOff", player];
-						SL_var_fullScreenNightVisionMode = currentVisionMode player;
-						_handled = true;
-					};
+					player action ["nvGogglesOff", player];
+					SL_var_fullScreenNightVisionMode = currentVisionMode player;
+					_handled = true;
 				};
 			};
 		};
@@ -99,18 +97,51 @@ waitUntil {alive player};
 
 player addEventHandler ["GetOutMan", {
 	params ["_player", "_role", "_vehicle", "_turret"];
-	switch SL_var_fullScreenNightVisionMode do
+	if (goggles _player in SL_var_fullScreenNightVision) then
 	{
-		case 1: {
-			if (goggles _player in SL_var_fullScreenNightVision) then
-			{
+		switch SL_var_fullScreenNightVisionMode do
+		{
+			case 1: {
 				_player action ["nvGoggles", _player];
 				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
 			};
+			case 0: {
+				_player action ["nvGogglesOff", _player];
+				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
+			};
 		};
-		case 0: {
-			if (goggles _player in SL_var_fullScreenNightVision) then
-			{
+	};
+}];
+
+player addEventHandler ["Put", {
+	params ["_player", "_container", "_item"];
+	if (goggles _player in SL_var_fullScreenNightVision) then
+	{
+		switch SL_var_fullScreenNightVisionMode do
+		{
+			case 1: {
+				_player action ["nvGoggles", _player];
+				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
+			};
+			case 0: {
+				_player action ["nvGogglesOff", _player];
+				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
+			};
+		};
+	};
+}];
+
+player addEventHandler ["Take", {
+	params ["_player", "_container", "_item"];
+	if (goggles _player in SL_var_fullScreenNightVision) then
+	{
+		switch SL_var_fullScreenNightVisionMode do
+		{
+			case 1: {
+				_player action ["nvGoggles", _player];
+				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
+			};
+			case 0: {
 				_player action ["nvGogglesOff", _player];
 				SL_var_fullScreenNightVisionMode = currentVisionMode _player;
 			};
